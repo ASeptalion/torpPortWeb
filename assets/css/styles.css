@@ -7,8 +7,9 @@
   --bold-font: 700;
   --bolder-font: 900;
   --bg-color: #93C572;
-  --primary-color: #014514;
-  --secondary-color: #ff3535;
+  --Gradient-one: #374b43;
+  --primary-color: #009ae1;
+  --secondary-color: #9ab0a7;
   --primary-shadow: #425446;
   --secondary-shadow: #a17a69;
   --bottom-margin: 0.5rem;
@@ -40,7 +41,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 3.5rem;
-  background-color: var(--bg-color);
+  background-color: var(--Gradient-one);
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
