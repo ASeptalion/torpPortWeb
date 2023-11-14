@@ -1,5 +1,5 @@
 app_type: php
-document_root: main
+document_root: public_html
 domain:
   main_domain: torpea.dev
 exclude_paths:
