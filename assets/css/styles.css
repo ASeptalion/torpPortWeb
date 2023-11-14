@@ -153,66 +153,31 @@ nav ul li {
 
 
 /* Contact */
-.contact {
-  margin-top: 2rem;
-}
-
-.contact h2 {
+.contact-section {
+  background: #f5f5f5;
+  padding: 20px;
   text-align: center;
-  margin-bottom: var(--bottom-margin-2);
 }
 
-.contact-form-container {
-  max-width: 40.75rem;
-  margin: 0 auto;
-  padding: 0.938rem;
-  border-radius: 5px;
-  box-shadow: 0 3px 10px var(--secondary-shadow);
+.form-control {
+  margin: 10px auto;
+  width: 300px;
+  text-align: left;
 }
 
-.contact-form-container label {
-  line-height: 2.7em;
-  font-weight: var(--bold-font);
-  color: var(--primary-color);
-}
-
-.contact-form-container textarea {
-  min-height: 6.25rem;
-  font-size: 14px;
-}
-
-.contact-form-container .input-field {
+.input-field {
   width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-radius: 5px;
-  border: none;
-  border: 2px outset var(--primary-color);
-  font-size: 0.875rem;
-  outline: none;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
-
-.input-field::placeholder {
-  padding: 0.5rem;
-  color: var(--primary-color);
-}
-
 
 .submit-btn {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  background-color: #fff;
-  border: 2px solid var(--primary-color);
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
   border-radius: 5px;
-  font-size: 1rem;
-  font-weight: var(--bold-font);
-  transition: var(--transition);
-}
-
-.submit-btn:hover {
-  background-color: var(--primary-color);
-  border: 2px solid var(--primary-color);
   cursor: pointer;
 }
 
@@ -453,4 +418,5 @@ body {
   font-family: var(--font-family);
 
 
+}
 }
