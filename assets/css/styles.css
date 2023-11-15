@@ -193,7 +193,16 @@ nav ul li {
   border-radius: 5px;
   cursor: pointer;
 }
-
+.contact-info{
+  width: 29%;
+  padding: 0.625rem;
+  box-shadow: 0px 2px 15px 2px var(--primary-shadow);
+  background-color: #e5ede5;
+  margin-top:13%;
+  padding:10px;
+  border-radius:20pt;
+  border:solid;
+}
 
 /* projects */
 
