@@ -10,7 +10,7 @@
   --Gradient-one: #374b43;
   --primary-color: #009ae1;
   --secondary-color: #9ab0a7;
-  --primary-shadow: #425446;
+  --primary-shadow: #000;
   --secondary-shadow: #a17a69;
   --bottom-margin: 0.5rem;
   --bottom-margin-2: 1rem;
@@ -42,11 +42,11 @@ nav {
   justify-content: space-between;
   padding: 1.5rem 3.5rem;
   background-color: #e5ede5;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 5px var(--primary-shadow);
 }
 
 nav h1 {
-  color: #0000;
+  color: #000;
 }
 
 nav a {
@@ -101,7 +101,7 @@ nav ul li {
   width: 25rem;
   padding: 0.625rem;
   border-radius: 6px;
-  box-shadow: 0px 2px 15px 2px #0000;
+  box-shadow: 0px 2px 15px 2px var(--primary-shadow);
   background-color: #e5ede5;
 }
 
