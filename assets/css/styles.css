@@ -41,7 +41,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 3.5rem;
-  background-color: var(--Gradient-one);
+  background-color: #e5ede5;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -85,14 +85,16 @@ nav ul li {
   /* max-width: 68.75rem; */
   margin: auto;
   background-color: var(--bg-color);
-  padding-top: 14 px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  border-bottom: dashed black 2px;
 }
 
 .hero img {
   height: 32.5rem;
   width: 25.5rem;
-  border-radius: 26 px;
-  border: solid 2 px white;
+  border-radius: 26px;
+  border: solid 2px white;
 }
 
 .bio {
@@ -116,6 +118,7 @@ nav ul li {
     .more-about {
   background-color: var(--bg-color);
   padding: 1rem 6rem;
+  border-bottom: dashed 2px black;
 }
 
 .more-about h2 {
