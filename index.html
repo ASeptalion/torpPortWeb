@@ -238,6 +238,8 @@
   </body>
   </html>
   
+<!-- ... (your existing HTML code) ... -->
+
 <script>
   var isTimerRunning = false;
 
@@ -262,6 +264,8 @@
       return false;
     }
 
+    // TODO: Add CSRF token check here
+
     // If the form is valid, send an AJAX request to the PHP script
     fetch('send_email.php', {
       method: 'POST',
@@ -282,7 +286,8 @@
 
     return false; // Prevent the form from submitting via the default browser mechanism
   }
-  </script>
+</script>
+
 
 
     <!-- Social accounts - Fixed to the right -->
