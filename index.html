@@ -238,40 +238,52 @@
   </body>
   </html>
   
+<script>
+  var isTimerRunning = false;
 
-    <script>
-      function validateForm() {
-        var name = document.getElementById("name").value;
-        var email = document.getElementById("email").value;
-        var message = document.getElementById("message").value;
-        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    
-        if (name.trim() === "" || email.trim() === "" || message.trim() === "") {
-          alert("All fields are required");
-          return false;
+  function validateForm() {
+    if (isTimerRunning) {
+      alert('Please wait 5 minutes before submitting again.');
+      return false;
+    }
+
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var message = document.getElementById('message').value;
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+    if (name.trim() === '' || email.trim() === '' || message.trim() === '') {
+      alert('All fields are required');
+      return false;
+    }
+
+    if (!emailPattern.test(email)) {
+      alert('Please enter a valid email address');
+      return false;
+    }
+
+    // If the form is valid, send an AJAX request to the PHP script
+    fetch('send_email.php', {
+      method: 'POST',
+      body: new URLSearchParams(new FormData(document.querySelector('form'))),
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert('Email sent successfully!');
+          // Set a 5-minute timer before allowing another submission
+          isTimerRunning = true;
+          setTimeout(function () {
+            isTimerRunning = false;
+          }, 5 * 60 * 1000); // 5 minutes in milliseconds
+        } else {
+          alert('Failed to send email.');
         }
-    
-        if (!emailPattern.test(email)) {
-          alert("Please enter a valid email address");
-          return false;
-        }
-    
-        // If the form is valid, send an AJAX request to the PHP script
-        fetch('send_email.php', {
-          method: 'POST',
-          body: new URLSearchParams(new FormData(document.querySelector('form')))
-        })
-        .then(response => {
-          if (response.ok) {
-            alert('Email sent successfully!');
-          } else {
-            alert('Failed to send email.');
-          }
-        });
-    
-        return false; // Prevent the form from submitting via the default browser mechanism
-      }
-    </script>
+      });
+
+    return false; // Prevent the form from submitting via the default browser mechanism
+  }
+  </script>
+
 
     <!-- Social accounts - Fixed to the right -->
         <div class="socials">
