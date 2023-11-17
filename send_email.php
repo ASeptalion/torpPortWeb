@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mail($recipient, $subject, $emailMessage, $headers)) {
         echo "Email sent successfully!";
     } else {
+        http_response_code(500); // Internal Server Error
         echo "Failed to send email.";
     }
 

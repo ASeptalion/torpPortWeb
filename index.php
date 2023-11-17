@@ -233,6 +233,9 @@
             $csrfToken = bin2hex(random_bytes(32));
             $_SESSION['csrf_token'] = $csrfToken;
           ?>
+
+    
+
           <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>" />
         
           </form>
