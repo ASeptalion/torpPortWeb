@@ -222,12 +222,7 @@
                 required
               ></textarea>
             </div>
-            <input
-              type="submit"
-              value="Submit"
-              id="submit-btn"
-              class="submit-btn"
-            />
+
             <?php
             // Generate and include a CSRF token
             $csrfToken = bin2hex(random_bytes(32));
@@ -272,10 +267,6 @@
       return false;
     }
 
-    // TODO: Add CSRF token check here
-
-    // If the form is valid, send an AJAX request to the PHP script
-// ... (your existing JavaScript code) ...
 
 // If the form is valid, send an AJAX request to the PHP script
 fetch('send_email.php', {
