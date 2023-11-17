@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+// Generate and include a CSRF token
+$csrfToken = bin2hex(random_bytes(32));
+$_SESSION['csrf_token'] = $csrfToken;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -228,11 +236,7 @@
               id="submit-btn"
               class="submit-btn"
             />
-            <?php
-            // Generate and include a CSRF token
-            $csrfToken = bin2hex(random_bytes(32));
-            $_SESSION['csrf_token'] = $csrfToken;
-          ?>
+
 
     
 
