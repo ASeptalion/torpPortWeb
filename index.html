@@ -228,6 +228,14 @@
               id="submit-btn"
               class="submit-btn"
             />
+            <?php
+            // Generate and include a CSRF token
+            $csrfToken = bin2hex(random_bytes(32));
+            $_SESSION['csrf_token'] = $csrfToken;
+          ?>
+          <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>" />
+        
+          <input type="submit" value="Submit" id="submit-btn" class="submit-btn" />
           </form>
         </div>
       </div>
@@ -267,22 +275,28 @@
     // TODO: Add CSRF token check here
 
     // If the form is valid, send an AJAX request to the PHP script
-    fetch('send_email.php', {
-      method: 'POST',
-      body: new URLSearchParams(new FormData(document.querySelector('form'))),
-    })
-      .then((response) => {
-        if (response.ok) {
-          alert('Email sent successfully!');
-          // Set a 5-minute timer before allowing another submission
-          isTimerRunning = true;
-          setTimeout(function () {
-            isTimerRunning = false;
-          }, 5 * 60 * 1000); // 5 minutes in milliseconds
-        } else {
-          alert('Failed to send email.');
-        }
-      });
+// ... (your existing JavaScript code) ...
+
+// If the form is valid, send an AJAX request to the PHP script
+fetch('send_email.php', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+  },
+  body: new URLSearchParams(new FormData(document.querySelector('form'))),
+})
+  .then((response) => {
+    if (response.ok) {
+      alert('Email sent successfully!');
+      // Set a 5-minute timer before allowing another submission
+      isTimerRunning = true;
+      setTimeout(function () {
+        isTimerRunning = false;
+      }, 5 * 60 * 1000); // 5 minutes in milliseconds
+    } else {
+      alert('Failed to send email.');
+    }
+  });
 
     return false; // Prevent the form from submitting via the default browser mechanism
   }

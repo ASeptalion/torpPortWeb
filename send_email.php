@@ -1,5 +1,14 @@
 <?php
+session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Validate CSRF token
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        // CSRF token validation failed
+        http_response_code(403); // Forbidden
+        exit('Invalid CSRF token');
+    }
+
     $name = $_POST["sender-name"];
     $email = $_POST["sender-email"];
     $message = $_POST["message"];
@@ -19,11 +28,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $headers = "From: $email";
 
     // Send the email
-    mail($recipient, $subject, $emailMessage, $headers);
+    if (mail($recipient, $subject, $emailMessage, $headers)) {
+        echo "Email sent successfully!";
+    } else {
+        echo "Failed to send email.";
+    }
 
-    echo "Email sent successfully!";
+    // Reset the CSRF token to generate a new one for the next form submission
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 } else {
+    http_response_code(400); // Bad Request
     echo "Invalid request!";
 }
 ?>
-
