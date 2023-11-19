@@ -1,0 +1,11 @@
+app_type: php
+document_root: public_html
+domain:
+  main_domain: torpea.dev
+exclude_paths:
+  - vendor
+tasks:
+  pre:
+    - echo "This is a pre-deployment task for PHP."
+  post:
+    - # Add any post-deployment tasks or scripts here

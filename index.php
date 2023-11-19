@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+// Generate and include a CSRF token
+$csrfToken = bin2hex(random_bytes(32));
+$_SESSION['csrf_token'] = $csrfToken;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -54,23 +62,29 @@
       <div class="bio animate__animated animate__shakeX">
         <h2 class="bio-title">About Me</h2>
         <p class="bio-text">
-        Come back to this, this is the about me page on hero section, Also, change this img with professonial picture of self
+          I am a dedicated and passionate cybersecurity enthusiast set to graduate with a Bachelor's degree in Cybersecurity in
+           May 2024. I am eagerly seeking full-time opportunities within the dynamic realm of Information Technology. My career
+            aspirations center around Cybersecurity, Networking, and various other roles within the IT field.
         </p>
       </div>
-</section>
+    </section>
 
     <!-- More about -->
         <section class="more-about">
       <h2>More About Me</h2>
       <p>
-Paragraph one about me
+        I'm thrilled to share that I'll be graduating with a Bachelor's degree in Cybersecurity this May! 
+        I just wanted to take the time to share my goals and interests, as I approach this significant milestone,
+         I'm more passionate than ever about the world of technology and its vast opportunities. I'm particularly interested
+          in the fields of cybersecurity, networking, and general IT, where I believe my skills and knowledge can make a real impact.         
+      
+        My journey in the world of cybersecurity has equipped me with the skills to protect digital landscapes, secure sensitive 
+        information, and defend against evolving cyber threats. However, my curiosity extends beyond just cybersecurity; I'm eager
+         to explore the broader spectrum of IT and computer networking to gain a well-rounded understanding of this dynamic industry. 
+        I'm on the lookout for exciting opportunities, connections, and collaborations within these domains. If you know of any
+         openings or are interested in discussing potential projects, please reach out to me in the contact section below!
       </p>
-Paragraph two about me
-      </p>
-      <p>
-Paragraph three about me
-      </p>
-    </section>
+        </section>
     <!-- Skills section -->
      <section class="skills" id="skills">
       <h2 class="skill-header">My Top Skills</h2>
@@ -99,13 +113,13 @@ Paragraph three about me
 
         <div class="second-set animate__animated animate__pulse">
           <img
-            src="assets/icons/icons8-bootstrap.svg"
+            src="assets/icons/Cisco.png"
             alt=""
             loading="lazy"
             class="icon icon-card"
           />
           <img
-            src="assets/icons/icons8-react-native.svg"
+            src="assets/icons/splunk.jpg"
             alt=""
             loading="lazy"
             class="icon icon-card"
@@ -118,7 +132,7 @@ Paragraph three about me
           />
         </div>
       </div>
-    </section>
+     </section>
     <!-- Projects section adapted to certs -->
    <section class="projects" id="projects">
       <h2 class="projects-title">Some of my Recent Experience</h2>
@@ -149,7 +163,7 @@ Paragraph three about me
            Since August 2021 I have worked with the Office of Residence Life at Southeast Missouri State University. In my time with the
            Office of Residence Life I learned strong organizational skills, leadership skills, and strong communication skills.
           </p>
-          <a href="#" target="_blank" class="project-link">See My Resume</a>
+          <a href="assets/images/Resume_Torpea.pdf" target="_blank" class="project-link">See My Resume</a>
         </div>
         <div class="project-container project-card">
           <img
@@ -166,15 +180,22 @@ Paragraph three about me
           <a href="#" target="_blank" class="project-link"></a>
         </div>
       </div>
-    </section>
+   </section>
 
 
     <!-- Contact section -->
-    <section class="contact" id="contact">
-      <h2>Get In Touch With Me</h2>
-      <div class="contact-form-container">
-        <div class="contact-form">
-          <form action="https://formspree.io/f/xyylngw" method="POST">
+    <section class="contact-section" id="contact">
+      <div class="contact-content">
+        <div class="content-left" style="width:75%;float:left;height:22%;">
+          <!-- Your "blah blah blah" content goes here -->
+          <center>
+            <div class="contact-info" >Interested in contacting me?<br><br>
+              Use the form on the right. Thank you for making it all the way through the page. I will get back to you shortly</div>
+          </center>
+        </div>
+        <div class="content-right" style="width:68%;float:right;margin-top:-12%;">
+          <!-- Your form goes here -->
+          <form method="POST" onsubmit="return validateForm();">
             <div class="form-control">
               <label for="name">Name</label>
               <input
@@ -215,10 +236,95 @@ Paragraph three about me
               id="submit-btn"
               class="submit-btn"
             />
+
+
+    
+
+          <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>" />
+        
           </form>
         </div>
       </div>
     </section>
+    
+    
+    
+  </body>
+  </html>
+  
+
+  <script>
+  var isTimerRunning = false;
+
+  // Function to get the current timestamp
+  function getCurrentTimestamp() {
+    return Math.floor(Date.now() / 1000); // Convert to seconds
+  }
+
+  function validateForm() {
+    if (isTimerRunning) {
+      alert('Please wait 5 minutes before submitting again.');
+      return false;
+    }
+
+    // Check if the timestamp is stored in local storage
+    var lastSubmissionTime = localStorage.getItem('lastSubmissionTime');
+
+    if (lastSubmissionTime) {
+      // Check if 5 minutes have elapsed
+      var currentTime = getCurrentTimestamp();
+      var elapsedMinutes = (currentTime - lastSubmissionTime) / 60;
+
+      if (elapsedMinutes < 5) {
+        alert('Please wait 5 minutes before submitting again.');
+        return false;
+      }
+    }
+
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var message = document.getElementById('message').value;
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+    if (name.trim() === '' || email.trim() === '' || message.trim() === '') {
+      alert('All fields are required');
+      return false;
+    }
+
+    if (!emailPattern.test(email)) {
+      alert('Please enter a valid email address');
+      return false;
+    }
+
+    // If the form is valid, send an AJAX request to the PHP script
+    fetch('send_email.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams(new FormData(document.querySelector('form'))),
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert('Email sent successfully!');
+          // Set the timestamp in local storage
+          localStorage.setItem('lastSubmissionTime', getCurrentTimestamp());
+          // Set a 5-minute timer before allowing another submission
+          isTimerRunning = true;
+          setTimeout(function () {
+            isTimerRunning = false;
+          }, 5 * 60 * 1000); // 5 minutes in milliseconds
+        } else {
+          alert('Failed to send email.');
+        }
+      });
+
+    return false; // Prevent the form from submitting via the default browser mechanism
+  }
+</script>
+
+
+
 
     <!-- Social accounts - Fixed to the right -->
         <div class="socials">
