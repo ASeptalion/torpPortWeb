@@ -253,13 +253,32 @@ $_SESSION['csrf_token'] = $csrfToken;
   </html>
   
 
-<script>
+  <script>
   var isTimerRunning = false;
+
+  // Function to get the current timestamp
+  function getCurrentTimestamp() {
+    return Math.floor(Date.now() / 1000); // Convert to seconds
+  }
 
   function validateForm() {
     if (isTimerRunning) {
       alert('Please wait 5 minutes before submitting again.');
       return false;
+    }
+
+    // Check if the timestamp is stored in local storage
+    var lastSubmissionTime = localStorage.getItem('lastSubmissionTime');
+
+    if (lastSubmissionTime) {
+      // Check if 5 minutes have elapsed
+      var currentTime = getCurrentTimestamp();
+      var elapsedMinutes = (currentTime - lastSubmissionTime) / 60;
+
+      if (elapsedMinutes < 5) {
+        alert('Please wait 5 minutes before submitting again.');
+        return false;
+      }
     }
 
     var name = document.getElementById('name').value;
@@ -277,31 +296,33 @@ $_SESSION['csrf_token'] = $csrfToken;
       return false;
     }
 
-
-// If the form is valid, send an AJAX request to the PHP script
-fetch('send_email.php', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-  },
-  body: new URLSearchParams(new FormData(document.querySelector('form'))),
-})
-  .then((response) => {
-    if (response.ok) {
-      alert('Email sent successfully!');
-      // Set a 5-minute timer before allowing another submission
-      isTimerRunning = true;
-      setTimeout(function () {
-        isTimerRunning = false;
-      }, 5 * 60 * 1000); // 5 minutes in milliseconds
-    } else {
-      alert('Failed to send email.');
-    }
-  });
+    // If the form is valid, send an AJAX request to the PHP script
+    fetch('send_email.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams(new FormData(document.querySelector('form'))),
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert('Email sent successfully!');
+          // Set the timestamp in local storage
+          localStorage.setItem('lastSubmissionTime', getCurrentTimestamp());
+          // Set a 5-minute timer before allowing another submission
+          isTimerRunning = true;
+          setTimeout(function () {
+            isTimerRunning = false;
+          }, 5 * 60 * 1000); // 5 minutes in milliseconds
+        } else {
+          alert('Failed to send email.');
+        }
+      });
 
     return false; // Prevent the form from submitting via the default browser mechanism
   }
 </script>
+
 
 
 
