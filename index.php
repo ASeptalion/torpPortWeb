@@ -174,7 +174,7 @@ $_SESSION['csrf_token'] = $csrfToken;
           />
           <h3 class="project-title">Organization</h3>
           <p class="project-details">
-            I have participated in several Organization, such as RHA, Rho Alpha Sigma, and Esports.
+            I have participated in several Organizations, such as RHA, Rho Alpha Sigma, and Esports.
             These Organizations have helped me learn and grow as a person. 
           </p>
           <a href="#" target="_blank" class="project-link"></a>
