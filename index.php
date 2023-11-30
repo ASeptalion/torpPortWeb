@@ -167,8 +167,8 @@ $_SESSION['csrf_token'] = $csrfToken;
         </div>
         <div class="project-container project-card">
           <img
-            src="assets/images/images.png"
-            alt="organizational"
+            src="assets/images/imagesrho.jpg"
+            alt=""
             loading="lazy"
             class="project-pic"
           />
@@ -178,6 +178,7 @@ $_SESSION['csrf_token'] = $csrfToken;
             These Organizations have helped me learn and grow as a person. 
           </p>
           <a href="#" target="_blank" class="project-link"></a>
+        
         </div>
       </div>
    </section>
