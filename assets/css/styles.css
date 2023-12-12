@@ -347,10 +347,15 @@ nav ul li {
     text-align: center;
   }
 
-  /* Projects Section */
+  .projects-container {
+    display: flex;
+    flex-direction: column; /* Stack items in a column on smaller screens */
+    align-items: center; /* Center-align items */
+  }
+  
   .project-container {
-    width: 18rem;
-    margin: 1rem;
+    width: 100%; /* Full width on smaller screens */
+    margin: 1rem 0; /* Adjusted margin for better spacing */
   }
 
   .contact-content {
