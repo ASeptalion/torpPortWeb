@@ -62,7 +62,7 @@ $_SESSION['csrf_token'] = $csrfToken;
       <div class="bio animate__animated animate__shakeX">
         <h2 class="bio-title">About Me</h2>
         <p class="bio-text">
-          I am a dedicated and passionate cybersecurity enthusiast set to graduate with a Bachelor's degree in Cybersecurity in
+          I am a dedicated and passionate cybersecurity enthusiast who graduated with a Bachelor's degree in Cybersecurity in
            May 2024. I am eagerly seeking full-time opportunities within the dynamic realm of Information Technology. My career
             aspirations center around Cybersecurity, Networking, and various other roles within the IT field.
         </p>
@@ -73,10 +73,10 @@ $_SESSION['csrf_token'] = $csrfToken;
         <section class="more-about">
       <h2>More About Me</h2>
       <p>
-        I'm thrilled to share that I'll be graduating with a Bachelor's degree in Cybersecurity this May! 
-        I just wanted to take the time to share my goals and interests, as I approach this significant milestone,
-         I'm more passionate than ever about the world of technology and its vast opportunities. I'm particularly interested
-          in the fields of cybersecurity, networking, and general IT, where I believe my skills and knowledge can make a real impact.         
+      I am currently pursuing a degree in technology management after graduating with a bachelor's degree in cybersecurity.
+       I have experience managing about 55 people at a 24/7 customer service desk and have learned a lot about management in my time doing that. 
+       I also love to learn about new technologies, and I enjoy educating others about cybersecurity.
+
       
         My journey in the world of cybersecurity has equipped me with the skills to protect digital landscapes, secure sensitive 
         information, and defend against evolving cyber threats. However, my curiosity extends beyond just cybersecurity; I'm eager
@@ -147,7 +147,7 @@ $_SESSION['csrf_token'] = $csrfToken;
           <h3 class="project-title">Cyber Security Degree</h3>
           <p class="project-details">
             I studied Cyber Security at Southeast Missouri State University for a balchelor's degree.
-            During my time at Southeast I also received a minor in computer science.
+            During my time at Southeast I also received a minor in computer science. I am currently studying technology management
           </p>
           <a href="https://semo.edu/academics/programs/business-computing/computer-science/cybersecurity.html" target="_blank" class="blur-link">Learn about the program</a>
         </div>
@@ -158,7 +158,7 @@ $_SESSION['csrf_token'] = $csrfToken;
             loading="lazy"
             class="project-pic"
           />
-          <h3 class="project-title">Resident Assistant</h3>
+          <h3 class="project-title">GA of Operations</h3>
           <p class="project-details">
            Since August 2021 I have worked with the Office of Residence Life at Southeast Missouri State University. In my time with the
            Office of Residence Life I learned strong organizational skills, leadership skills, and strong communication skills.
